@@ -1,0 +1,46 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: left;
+}
+</style>
+
+<h1>All Articles</h1>
+
+{% if products is not empty %}
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Mark</th>
+      <th>Price</th>
+      <th>Delete</th>
+      <th>Update</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for article in products %}
+  <tr>
+    <td>{{ article.id }}</td>
+    <td>{{ article.code }}</td>
+    <td>{{ article.name }}</td>
+    <td>{{ article.description | slice(0, 20) }}...</td>
+    <td>{{ article.mark }}</td>
+    <td>{{ article.price }}</td>
+    <td>
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <p>No article found.</p>
+{% endif %}
+
+<br/>
+<a href="/create-article">Create New</a>
