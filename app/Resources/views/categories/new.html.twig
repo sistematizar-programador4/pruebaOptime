@@ -10,7 +10,7 @@
   }
 </style>
 
-<h1>Create or Update Article:</h1>
+<h1>Create or Update Category:</h1>
 {% if errors is not empty %}
 <div class="container">
     <div class="msg msg-error z-depth-3 scale-transition"> 
@@ -42,22 +42,11 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
-          {{ form_widget(form.mark) }}
-          <label for="mark">Mark</label>
-        </div>
-        <div class="input-field col s6">
-          {{ form_widget(form.price) }}
-          <label for="price">Price</label>
-        </div>
-      </div>
-      <div class="row">
         <div class="input-field col s12">
-          {{ form_widget(form.category) }}
-          <label for="category">category</label>
+          {{ form_widget(form.active) }}
+          <label for="active">active</label>
         </div>
       </div>
       {{ form_end(form) }}
   </div>
-
 {% endblock %}

@@ -5,9 +5,56 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <style>
+            .msg {
+                width:100%;
+                border: 1px solid;
+                padding:10px;
+                margin: 20px;
+                color: grey;
+            }
+            .msg-error {
+            // rouge
+                border-color: #d32f2f;
+                background-color: #ef5350;
+                color: white;
+            }
+            .msg-alert {
+            //orange
+                border-color: #ef6c00;
+                background-color: #ff9800;
+                color: white;
+            }
+
+            .msg-info{
+                border-color: #0288d1;
+                background-color: #29b6f6;
+                color: white;
+            }
+        </style>
     </head>
     <body>
+        <nav>
+            <div class="nav-wrapper">
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/show-products">Productos</a></li>
+                <li><a href="/show-categories">Categorias</a></li>
+            </ul>
+            </div>
+        </nav>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, []);
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems, []);
+           });
+        </script>
     </body>
 </html>

@@ -1,10 +1,14 @@
 <?php
 namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 /**
 * @ORM\Entity
 * @ORM\Table(name="categories")
+* @UniqueEntity("code",message="El codigo ingresado ya se encuentra registrado.")
+* @UniqueEntity("name",message="El nombre ingresado ya se encuentra registrado.")
 */
 class Categories {
 
@@ -17,16 +21,30 @@ class Categories {
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     * @Assert\Regex(
+     *     pattern="/^\S+\w{8,32}\S{1,}/",
+     *     match=false,
+     *     message="El codigo no puede contener caracteres espaciales o espacios"
+     * )
     */
     protected $code;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 4,
+     *      max = 10,
+     *      minMessage = "El nombre tiene que ser minimo de {{ limit }} caracteres",
+     *      maxMessage = "El nombre tiene que ser maximo de {{ limit }} caracteres"
+     * )
     */
     protected $name;
 
     /**
      * @ORM\Column(type="string", length=1000)
+     * @Assert\NotBlank
     */
     protected $description;
 
@@ -45,7 +63,15 @@ class Categories {
         $this->products = new ArrayCollection();
     }
 
-
+    /**
+     * Transform to string
+     * 
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
     /**
      * Get id
      *
