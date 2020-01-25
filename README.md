@@ -1,4 +1,10 @@
-exampleProject
-==============
+# Prueba para Optime Consulting
 
-A Symfony project created on January 2, 2020, 9:38 pm.
+
+## Installation
+
+Se utilizo sqlite3, para iniciar el proyecto ejecutar el siguiente comando dentro de la carpeta raiz.
+
+```bash
+mkdir var/data
+```
